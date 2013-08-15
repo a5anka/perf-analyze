@@ -1,3 +1,6 @@
+/.gitignore
+/.project
+/.pydevproject
 /ArffWriter.pyc
 /DataParser.pyc
 /DataWriter.pyc
