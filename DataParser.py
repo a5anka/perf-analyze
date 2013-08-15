@@ -21,7 +21,7 @@ class DataParser():
           size = len(line.split())
           symbol = ''
           overhead = float(line.split()[0].strip('%'))
-          shared_obj = line.split()[2]
+          #shared_obj = line.split()[2]
   
           if size<=5:
             symbol = line.split()[4]
