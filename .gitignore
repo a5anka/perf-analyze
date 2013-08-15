@@ -1,11 +1,13 @@
 /data/
 data.out
+/.gitignore
+/.project
+/.pydevproject
 /ArffWriter.pyc
 /DataParser.pyc
 /DataWriter.pyc
 /FileReader.pyc
 /PerfData.pyc
-/data
 /linear_regression_key_file_100MBtxt_1.arff
 /linear_regression_key_file_100MBtxt_12.arff
 /linear_regression_key_file_100MBtxt_2.arff
