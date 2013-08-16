@@ -1,10 +1,17 @@
+#
+# This class is used to handle the writing parsed perf data to the arff file
+# @author: Gayashan Amarasinghe
+#
 class DataWriter():
   
-  def __init__(self, arffWriter, perfData, eventsList):
-    self._arffWriter = arffWriter
+  def __init__(self, ouputWriter, perfData, eventsList):
+    self._outputWriter = ouputWriter
     self._perfData = perfData
     self._eventsList = eventsList
-    
+  
+  #
+  # Write the perfData values to the arff file
+  #
   def writeToArffFile(self):
     i=1
     for symbol in self._perfData.getSymbolsList():
@@ -16,7 +23,7 @@ class DataWriter():
       if '0xc0' in self._perfData.getRawEventValueCollection(symbol) and self._perfData.getInterpolatedValue(symbol,'0xc0') != '?':     
       #write to the output arff file
         out = ''
-        self._arffWriter.write('%\n'+'% '+str(i)+' Function: '+symbol+'\n%\n')
+        self._outputWriter.write('%\n'+'% '+str(i)+' Function: '+symbol+'\n%\n')
         i += 1
         #print 'Function: '+symbol
         for event in self._eventsList:
@@ -26,5 +33,11 @@ class DataWriter():
             out += str(self._perfData.getInterpolatedValue(symbol, event)/self._perfData.getInterpolatedValue(symbol, '0xc0')*pow(10, 9)) + ','
         out += '?\n'
         #print out
-        self._arffWriter.write(out)
+        self._outputWriter.write(out)
+  
+  #
+  # Can be used to change the output writer in runtime
+  #       
+  def setOutputWriter(self, outputWriter):
+    self._outputWriter = outputWriter
     
