@@ -1,3 +1,8 @@
+#
+# The class writes the header to the arff file and writes the given strings to the
+# arff file.
+# @author: Gayashan Amarasinghe
+# 
 class ArffWriter():
   _write_flag = 'wb'
   

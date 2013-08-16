@@ -4,6 +4,10 @@ from ArffWriter import ArffWriter
 from DataParser import DataParser
 from DataWriter import DataWriter
 
+#
+# Staging the scenario
+#
+#
 def main():
   program = 'streamcluster'
   fileName = '../data/streamcluster_simlarge_1.txt'
@@ -21,7 +25,6 @@ def main():
   dataParser = DataParser(perfFileReader, perfData, program)
   dataWriter = DataWriter(arffWriter, perfData, eventsList)
   
-#  dataParser.test()
   dataParser.parse()
   print(perfData.getDataStore())
   dataWriter.writeToArffFile()

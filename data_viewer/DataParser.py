@@ -1,3 +1,8 @@
+#
+# This class is used parse the output file and store the decoded data in the
+# PerfData class structure.
+# @author: Gayashan Amarasinghe
+#
 class DataParser():
   
   def __init__(self,fileReader,perfData, program):
@@ -5,10 +10,9 @@ class DataParser():
     self._perfData = perfData
     self._programName = program
   
-  def test(self):
-    while self._fileReader.readNextLine():
-      print '>>>',self._fileReader.readNextLine()
-  
+  #
+  # Parse the output file and store in the PerfData structure
+  #
   def parse(self):
     for line in self._fileReader.getFilePointer():
       if 'Samples' in line:
@@ -37,3 +41,9 @@ class DataParser():
           temp[raw_event] = interpolated_val
         if len(temp) !=0:
           self._perfData.addValue(symbol, raw_event, interpolated_val)
+
+  #
+  # Set the file reader in run time
+  #
+  def setFileReader(self, fileReader):
+    self._fileReader = fileReader

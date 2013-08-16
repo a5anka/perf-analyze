@@ -1,3 +1,7 @@
+#
+# This data structure is used to store and access perf data values
+# @author: Gayashan Amarasinghe
+#
 class PerfData():
   
   def __init__(self):
