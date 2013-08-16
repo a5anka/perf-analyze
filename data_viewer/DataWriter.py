@@ -1,5 +1,5 @@
 #
-# This class is used to handle the writing parsed perf data to the arff file
+# This class is used to handle writing, parsed perf data to the arff file.
 # @author: Gayashan Amarasinghe
 #
 class DataWriter():
