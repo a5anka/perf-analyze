@@ -3,6 +3,7 @@ from FileReader import FileReader
 from ArffWriter import ArffWriter
 from DataParser import DataParser
 from DataWriter import DataWriter
+from EventsHolder import EventsHolder
 
 #
 # Staging the scenario
@@ -23,7 +24,10 @@ def main():
   perfFileReader = FileReader(fileName)
   arffWriter = ArffWriter('test.arff',arffHeader)
   dataParser = DataParser(perfFileReader, perfData, program)
-  dataWriter = DataWriter(arffWriter, perfData, eventsList)
+  eventsHolder = EventsHolder(eventsList)
+  eventsHolder.setInstructionCountRawEvent('0xc0')
+
+  dataWriter = DataWriter(arffWriter, perfData, eventsHolder)
   
   dataParser.parse()
   print(perfData.getDataStore())
