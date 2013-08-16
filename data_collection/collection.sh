@@ -3,7 +3,7 @@
 # Print help message
 # Executable name should be given as the argument
 function print_help {
-    echo "usage: $1 [<options>] [<command>]"
+    echo "usage: $1 [<options>] <command>"
     echo -e "\noptions:"
     echo -e "\t -e event1,event2,..."
     echo -e "\t -o output file name"
@@ -12,11 +12,10 @@ function print_help {
 }
 
 # default event list
-event_list="r00c0,r0149,r0151,r02a2,r0126,r0227,r0224,r08a2,r01b0,r20f0,r02f1,r01f2,r01b8,r02b8,r04b8,r40cb"
 perf_location=/usr/sbin/perf
 output_file="data.out"
 perf_input=perf.data
-
+event_config_file=./events.cfg
 program_name=$0
 
 while getopts "e:op:" opt; do
@@ -37,6 +36,19 @@ shift $((OPTIND-1))
 if [[ -z "$@" ]] ; then
     print_help $program_name
     exit
+fi
+
+if [[ -z $event_list ]] ; then
+    cpu_model=$(cat /proc/cpuinfo | grep "model name" | sed 's/model name[[\t ]]*: //g' | sed 's/ [ ]\+/ /g' | uniq)
+
+    # Read default event  lists from config file
+    source $event_config_file
+    if [[ ${default_events[$cpu_model]} ]] ; then
+	event_list=${default_events["$cpu_model"]}
+    else
+	event_list="instructions,cache-references,cache-misses,L1-dcache-loads,L1-dcache-load-misses,\
+L1-dcache-stores,L1-dcache-store-misses,dTLB-load-misses,dTLB-store-misses"
+    fi
 fi
 
 # Record performance data in to a file
