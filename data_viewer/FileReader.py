@@ -1,5 +1,7 @@
 # File Reader class
 #
+# Read a given file and provide access to the file
+# @author: Gayashan Amarasinghe
 #
 class FileReader():
   _read_flag = 'rb'
