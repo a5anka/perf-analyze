@@ -31,7 +31,8 @@ class DataWriter():
           if self._perfData.getInterpolatedValue(symbol, event) == '?':
             out += str(self._perfData.getInterpolatedValue(symbol, event)) + ','
           else:
-            out += str(self._perfData.getInterpolatedValue(symbol, event)/self._perfData.getInterpolatedValue(symbol, self._eventsHolder.getInstructionCountRawEvent())*pow(10, 9)) + ','
+            out += str(self._perfData.getInterpolatedValue(symbol, event)/\
+                       self._perfData.getInterpolatedValue(symbol, self._eventsHolder.getInstructionCountRawEvent())*pow(10, 9)) + ','
         out += '?\n'
         #print out
         self._outputWriter.write(out)

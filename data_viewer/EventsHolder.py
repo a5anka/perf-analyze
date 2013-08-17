@@ -1,6 +1,7 @@
-
-
-
+#
+# This class holds the list of raw events, and provides access to the events
+# @author: Gayashan Amarasinghe
+#
 class EventsHolder():
   
   def __init__(self, eventsList = [], instructionCount = None):
@@ -22,5 +23,5 @@ class EventsHolder():
   def getEventsList(self):
     return self._eventsList
   
-  def addEvent(self, rawEvent):
+  def addRawEvent(self, rawEvent):
     self._instructionCount.append(rawEvent)
