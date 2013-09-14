@@ -15,9 +15,14 @@ class DataParser():
   #
   def parse(self):
     for line in self._fileReader.getFilePointer():
-      if 'Samples' in line:
-        raw_event = line.split()[6].strip('\'')
-        event_count = int(self._fileReader.readNextLine().split()[4])
+      if 'Events' in line:
+        #print line.split()
+        raw_event = line.split()[4].strip('\'')
+        #raw_event = line.split()[6].strip('\'')
+        #event_count = int(self._fileReader.readNextLine().split()[4])
+        tmp = line.split()[2]
+        if 'K' in tmp: tmp = int(line.split()[2].split('K')[0])*1000
+        event_count = int(tmp)
         
       if '#' not in line and len(line.split())!=0:
         temp = {}
