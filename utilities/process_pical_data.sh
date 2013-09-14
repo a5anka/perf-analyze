@@ -1,5 +1,5 @@
 #! /bin/bash
-#
+# This script is used to generate arff files from pical data on ppc
 
 #../data_viewer/PerfDataViewer.py ppical-good ../data/ppc/ppical-good_2_100000000.txt
 
@@ -17,7 +17,7 @@ do
         echo $d
         for program in ${PROGRAM[@]}; do
             echo $program 
-            $PYTHON $SCRIPT ${program} "../data/ppc/${program}_${i}_${d}.txt"
+            $PYTHON $SCRIPT ${program} "../data/ppc/${program}_${i}_${d}.txt" "../output/ppc/${program}_${i}_${d}.arff"
             echo
         done
     done
