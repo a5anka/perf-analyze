@@ -10,19 +10,14 @@ import sys
 #
 #
 def main():
-  if len(sys.argv) != 3:
+  if len(sys.argv) != 4:
     print 'Missing file operand'
-    print 'PerfDataViewer.py [program] [input_data_file]'
+    print 'PerfDataViewer.py [program] [input_data_file] [output_data_file]'
     return
 
   program = str(sys.argv[1])
   fileName = str(sys.argv[2])
-  outFileName = fileName.split('.')
-  outFileName.pop()
-  outFileName = outFileName[len(outFileName)-1].split('/')
-  outFileName = '../output/' + outFileName[len(outFileName)-1] + '.arff'
-  print outFileName
-
+  outFileName = str(sys.argv[3])
   
 
   #fileName = '../data/ppc/ppical-bad_fs_2_100000000.txt'
