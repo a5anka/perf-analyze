@@ -19,7 +19,11 @@ def main():
   fileName = str(sys.argv[2])
   outFileName = fileName.split('.')
   outFileName.pop()
-  outFileName = '.'.join(outFileName) + '.arff'
+  outFileName = outFileName[len(outFileName)-1].split('/')
+  outFileName = '../output/' + outFileName[len(outFileName)-1] + '.arff'
+  print outFileName
+
+  
 
   #fileName = '../data/ppc/ppical-bad_fs_2_100000000.txt'
   eventsList = ['0x149','0x151','0x2a2','0x126','0x227','0x224','0x8a2','0x1b0','0x20f0','0x2f1','0x1f2','0x1b8','0x2b8','0x4b8','0x40cb']
