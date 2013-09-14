@@ -11,16 +11,15 @@ import sys
 #
 def main():
   if len(sys.argv) != 4:
-    print 'Missing file operand'
+    print 'Missing file operands!'
     print 'PerfDataViewer.py [program] [input_data_file] [output_data_file]'
     return
 
   program = str(sys.argv[1])
-  fileName = str(sys.argv[2])
+  inFileName = str(sys.argv[2])
   outFileName = str(sys.argv[3])
   
-
-  #fileName = '../data/ppc/ppical-bad_fs_2_100000000.txt'
+  #TODO: move these to configuration files
   eventsList = ['0x149','0x151','0x2a2','0x126','0x227','0x224','0x8a2','0x1b0','0x20f0','0x2f1','0x1f2','0x1b8','0x2b8','0x4b8','0x40cb']
   ppc_eventsList = ['0x3c046','0x2c048','0x2f080','0x26080','0x30881','0x26182','0x26880','0xd0a2','0xd0a0']
   arffHeader = ['@relation function_level_badfs_badma_good\n',\
@@ -37,19 +36,21 @@ def main():
                     '@attribute status {good, badfs, badma}\n', '@data\n']
   
   perfData = PerfData()
-  arffWriter = ArffWriter(outFileName,ppc_arffHeader)
-  perfFileReader = FileReader(fileName)
+  
+  perfFileReader = FileReader(inFileName)
   dataParser = DataParser(perfFileReader, perfData, program)
+  
   eventsHolder = EventsHolder(ppc_eventsList)
   eventsHolder.setInstructionCountRawEvent('0x2')
-
+  
+  arffWriter = ArffWriter(outFileName,ppc_arffHeader)
   dataWriter = DataWriter(arffWriter, perfData, eventsHolder)
   
   dataParser.parse()
   print(perfData.getDataStore())
   dataWriter.writeToArffFile()
-  
-  
+
+  print outFileName + ' file was created successfully.'
 
 if __name__ == '__main__':
   main()
