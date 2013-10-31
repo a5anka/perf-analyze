@@ -40,10 +40,10 @@ def main():
   perfFileReader = FileReader(inFileName)
   dataParser = DataParser(perfFileReader, perfData, program)
   
-  eventsHolder = EventsHolder(ppc_eventsList)
-  eventsHolder.setInstructionCountRawEvent('0x2')
+  eventsHolder = EventsHolder(eventsList)
+  eventsHolder.setInstructionCountRawEvent('0xc0')
   
-  arffWriter = ArffWriter(outFileName,ppc_arffHeader)
+  arffWriter = ArffWriter(outFileName,arffHeader)
   dataWriter = DataWriter(arffWriter, perfData, eventsHolder)
   
   dataParser.parse()
@@ -54,4 +54,4 @@ def main():
 
 if __name__ == '__main__':
   main()
-  
+

@@ -5,11 +5,12 @@
 
 PYTHON=python
 SCRIPT="../data_viewer/PerfDataViewer.py"
-data=(100000000 500000000 1000000000)
+#data=(100000000 500000000 1000000000)
+data=(1000000 10000000 100000000)
 power7reducedevents="r2,r3c046,r2c048,r2f080,r26080,r30881,r26182,r26880,rd0a2,rd0a0"
 PROGRAM=(ppical-good ppical-bad_fs)
 
-for i in 1 2 4 8 16
+for i in 1 2 4 8
 do
     echo "------------------------------------------------"
     echo "No of threads ${i}"
@@ -17,7 +18,7 @@ do
         echo $d
         for program in ${PROGRAM[@]}; do
             echo $program 
-            $PYTHON $SCRIPT ${program} "../data/ppc/${program}_${i}_${d}.txt" "../output/ppc/${program}_${i}_${d}.arff"
+            $PYTHON $SCRIPT ${program} "../data/intel/${program}_${i}_${d}.txt" "../output/intel/${program}_${i}_${d}.arff"
             echo
         done
     done
